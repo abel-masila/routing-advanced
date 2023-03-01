@@ -16,7 +16,7 @@ const AddBudgetForm = () => {
   }, [isSubmitting]);
 
   return (
-    <div class="form-wrapper">
+    <div className="form-wrapper">
       <h2 className="h3">Create Budget</h2>
       <fetcher.Form method="post" className="grid-sm" ref={formRef}>
         <div className="grid-xs">
