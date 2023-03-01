@@ -26,3 +26,5 @@ export const createBudget = ({ name, amount }) => {
     JSON.stringify([...existingBudgets, newItem])
   );
 };
+export const waait = () =>
+  new Promise((res) => setTimeout(res, Math.random() * 2000));
