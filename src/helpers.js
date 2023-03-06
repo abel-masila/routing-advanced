@@ -43,5 +43,28 @@ export const createExpense = ({ name, amount, budgetId }) => {
   );
 };
 
+export const calculateSpentByBudget = (budgetId) => {
+  const expense = fetchData("expenses") ?? [];
+  const budgetSpent = expense.reduce((acc, expense) => {
+    if (expense.budgetId !== budgetId) return acc;
+    return (acc += expense.amount);
+  }, 0);
+
+  return budgetSpent;
+};
+
 export const waait = () =>
   new Promise((res) => setTimeout(res, Math.random() * 2000));
+
+export const formatPercentage = (amount) => {
+  return amount.toLocaleString("en-US", {
+    style: "percent",
+    minimumFractionDigits: 0,
+  });
+};
+export const formatCurrency = (amount) => {
+  return amount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+};
