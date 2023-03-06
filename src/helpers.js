@@ -68,3 +68,6 @@ export const formatCurrency = (amount) => {
     currency: "USD",
   });
 };
+
+export const formatDateToLocalString = (epoch) =>
+  new Date(epoch).toLocaleDateString();
