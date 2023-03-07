@@ -6,7 +6,13 @@ import AddExpsenseForm from "../components/AddExpsenseForm";
 import BudgetItem from "../components/BudgetItem";
 import Intro from "../components/Intro";
 import Table from "../components/Table";
-import { createBudget, createExpense, fetchData, waait } from "../helpers";
+import {
+  createBudget,
+  createExpense,
+  fetchData,
+  waait,
+  deleteItem,
+} from "../helpers";
 
 //Loader
 export function dashboardLoader() {
@@ -55,6 +61,17 @@ export async function dashboardAction({ request }) {
       return toast.success(`Expense ${values.newExpense} created!`);
     } catch (error) {
       throw new Error("Error creating your expense.");
+    }
+  }
+  if (_action === "deleteExpense") {
+    try {
+      deleteItem({
+        key: "expenses",
+        id: values.expenseId,
+      });
+      return toast.success(`Expense deleted!`);
+    } catch (error) {
+      throw new Error("Error deleting your expense.");
     }
   }
 }
