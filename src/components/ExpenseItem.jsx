@@ -6,7 +6,7 @@ import {
   getAllMatchingItems,
 } from "../helpers";
 
-const ExpenseItem = ({ expense }) => {
+const ExpenseItem = ({ expense, showBudget }) => {
   const fetcher = useFetcher();
   const { name, createdAt, amount } = expense;
   const budget = getAllMatchingItems({
@@ -20,16 +20,18 @@ const ExpenseItem = ({ expense }) => {
       <td>{name}</td>
       <td>{formatCurrency(amount)}</td>
       <td>{formatDateToLocalString(createdAt)}</td>
-      <td>
-        <Link
-          to={`/budget/${budget.id}`}
-          style={{
-            "--accent": budget.color,
-          }}
-        >
-          {budget.name}
-        </Link>
-      </td>
+      {showBudget ? (
+        <td>
+          <Link
+            to={`/budget/${budget.id}`}
+            style={{
+              "--accent": budget.color,
+            }}
+          >
+            {budget.name}
+          </Link>
+        </td>
+      ) : null}
       <td>
         <fetcher.Form method="post">
           <input type="hidden" name="_action" value="deleteExpense" />

@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { fetchData, waait, deleteItem } from "../helpers";
 
 export function expensesLoader() {
-  const expenses = fetchData("expenses");
   return {
     expenses,
   };

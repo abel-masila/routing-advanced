@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useFetcher } from "react-router-dom";
-import {  PlusCircleIcon } from "@heroicons/react/24/solid";
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
 
 const AddExpsenseForm = ({ budgets }) => {
   const fetcher = useFetcher();
@@ -20,7 +20,7 @@ const AddExpsenseForm = ({ budgets }) => {
       <h2 className="h3">
         Add New{" "}
         <span className="accent">
-          {budgets.length === 1 && `${budgets.map((budg) => budg.name)}`}
+          {budgets?.length === 1 && `${budgets.map((budg) => budg.name)}`}
         </span>{" "}
         Expense
       </h2>
@@ -49,12 +49,12 @@ const AddExpsenseForm = ({ budgets }) => {
               required
             />
           </div>
-          <div className="grid-xs" hidden={budgets.length === 1}>
+          <div className="grid-xs" hidden={budgets?.length === 1}>
             <label htmlFor="newExpenseBudget">Budget Category</label>
             <select name="newExpenseBudget" id="newExpenseBudget" required>
               {budgets
-                .sort((a, b) => a.createdAt - b.createdAt)
-                .map((budget) => (
+                ?.sort((a, b) => a.createdAt - b.createdAt)
+                ?.map((budget) => (
                   <option key={budget.id} value={budget.id}>
                     {budget.name}
                   </option>
